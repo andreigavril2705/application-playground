@@ -11,16 +11,16 @@ spec:
       app: hello-web
   template:
     metadata:
-    labels:
-      app: hello-web
+      labels:
+        app: hello-web
     spec:
       containers:
       - name: web
         image: ghcr.io/paulbouwer/hello-kubernetes:1.10.1
-      ports:
+        ports:
         - containerPort: 8080
-      env:
-      - name: KUBERNETES_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
+        env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
