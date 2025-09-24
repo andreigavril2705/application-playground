@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-web
+  labels:
+    app: hello-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-web
+  template:
+    metadata:
+    labels:
+      app: hello-web
+    spec:
+      containers:
+      - name: web
+        image: ghcr.io/paulbouwer/hello-kubernetes:1.10.1
+      ports:
+        - containerPort: 8080
+      env:
+      - name: KUBERNETES_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
